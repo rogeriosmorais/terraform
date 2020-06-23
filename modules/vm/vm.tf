@@ -12,12 +12,12 @@ resource "azurerm_network_interface" "udacity_interface" {
 }
 
 resource "azurerm_linux_virtual_machine" "udacity_vm" {
-  name                = "udacity_virtual_machine"
-  location            = "${var.location}"
-  resource_group_name = "${var.resource_group}"
-  size                = "Standard_B1s"
-  admin_username      = "adminuser"
-  network_interface_ids = [${azurerm_network_interface.udacity_interface}]
+  name                  = "udacity_virtual_machine"
+  location              = "${var.location}"
+  resource_group_name   = "${var.resource_group}"
+  size                  = "Standard_B1s"
+  admin_username        = "adminuser"
+  network_interface_ids = ["${azurerm_network_interface.udacity_interface.id}"]
   admin_ssh_key {
     username   = "adminuser"
     public_key = "file("~/.ssh/id_rsa.pub")"
